@@ -1,8 +1,15 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonModal } from '@ionic/react';
+
+const ModalContent: React.FC = () => {
+  return (
+      <IonContent>
+        <div>Modal Content</div>
+      </IonContent>
+  )
+}
 
 const Home: React.FC = () => {
+  const [presentIonicModal] = useIonModal(ModalContent)
   return (
     <IonPage>
       <IonHeader>
@@ -11,12 +18,13 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+      <IonButton
+        expand='block'
+        className='ion-margin'
+          onClick={() => presentIonicModal()}
+        >
+          Open
+        </IonButton>
       </IonContent>
     </IonPage>
   );
